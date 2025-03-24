@@ -6,7 +6,8 @@ import { useRouter } from 'next/router';
 
 export default function NewProduct() {
     return (
-        <Layout>
+    <Layout>
+    <h1>New Product</h1>
     <ProductForm />
     </Layout>
     )

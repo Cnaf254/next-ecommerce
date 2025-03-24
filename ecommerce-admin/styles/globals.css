@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+img{
+   max-height: 100%; 
+}
 input, textarea{
     @apply border-2 border-gray-300 rounded-md px-1 w-full mb-2;
 }
@@ -28,5 +31,14 @@ table.basic tr td{
     @apply border border-blue-200 p-1;
 }
 table.basic a{
-    @apply bg-blue-900 text-white text-sm py-1 rounded-md px-2 inline-flex gap-1 
+    @apply bg-blue-900 text-white text-sm py-1 rounded-md px-2 inline-flex gap-1 mr-1;
+}
+.btn-default, .btn-red{
+    @apply px-4 py-1 rounded-md;
+}
+.btn-red{
+    @apply bg-red-800 text-white
+}
+.btn-default{
+    @apply bg-gray-500 text-white; 
 }
