@@ -1,25 +1,36 @@
-import { Category } from "@/models/Category";
-import { mongooseConnect } from "@/lib/mongoose"; // Ensure you have a connection function
 
-export default async function handle(req, res) {
-    await mongooseConnect();  
+import {Category} from "@/models/Category"
+import axios from "axios";
 
-    const { method } = req;
-
-    if (method === 'GET') {
-        const categories = await Category.find().populate('parent'); 
-        res.json(categories);
-    }
-
-    if (method === 'POST') {
-        const { name, parentCategory } = req.body;
-        
-        const categoryData = { name };
-        if (parentCategory) {
-            categoryData.parent = parentCategory; // Assign only if valid
-        }
-        
-        const categoryDoc = await Category.create(categoryData);
-        res.json(categoryDoc);
-    }
+export default async function handle (req,res){
+ const {method} = req;
+ 
+ 
+if(method === 'GET'){
+   
+   res.json(await Category.find().populate('parent'));
+}
+if(method === 'PUT'){
+   const {name,parentCategory,_id} = req.body;
+   const categoryDoc = await Category.updateOne({_id},{
+      name,
+      parent:parentCategory,
+   })
+   res.json(categoryDoc); 
+}
+ if(method === 'POST'){
+   
+  const {name,parentCategory} = req.body;
+const categoryDoc = await Category.create({name,parent:parentCategory});
+res.json(categoryDoc);
+ }
+ 
+ if(method === 'DELETE'){
+   if(req.query?.id){
+       await Category.deleteOne({_id:req.query.id});
+       res.json(true);
+   }
+   
+}
+ 
 }
