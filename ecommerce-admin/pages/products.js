@@ -11,6 +11,7 @@ export default function Products(){
         .catch(err => console.error(err))
     }, [])
     if(!products.length) return (<Layout>
+        <Link href={'/products/new'} className='bg-blue-900 text-white  py-1 px-2 rounded-md'> Add new product</Link>
         <div className="flex justify-center items-center h-screen">
       <Loader className="h-10 w-10 animate-spin text-blue-500" />
     </div>
