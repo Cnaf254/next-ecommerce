@@ -132,7 +132,7 @@ export default function Categories() {
              value={property.values}
              onChange={(ev)=> handlePropertyValuesChange(index,property, ev.target.value)} className="mb-0"/>
 
-             <button type="button" className="btn-default"
+             <button type="button" className="btn-red"
              onClick={()=> removeProperty(index)}>Remove</button>
             </div>
           )
@@ -175,10 +175,10 @@ onClick={()=> {setEditedCategory(null)
                 <td>{category.name}</td>
                 <td>{category?.parent?.name || "None"}</td>
                 <td>
-                  <button className="btn-primary mr-1" onClick={() => editCategory(category)}>
+                  <button className="btn-default mr-1" onClick={() => editCategory(category)}>
                     Edit
                   </button>
-                  <button className="btn-primary bg-red-500" onClick={() => deleteCategory(category)}>
+                  <button className="btn-red" onClick={() => deleteCategory(category)}>
                     Delete
                   </button>
                 </td>

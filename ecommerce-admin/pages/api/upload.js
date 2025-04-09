@@ -1,6 +1,8 @@
 import multiparty from "multiparty";
 import fs from "fs";
 import path from "path";
+import { mongooseConnect } from "@/lib/mongoose";
+import { isAdminRequest } from "./auth/[...nextauth]";
 
 export const config = {
   api: {
@@ -9,6 +11,9 @@ export const config = {
 };
 
 export default async function handle(req, res) {
+await mongooseConnect();
+await isAdminRequest(req, res);
+
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Method Not Allowed" });
   }
